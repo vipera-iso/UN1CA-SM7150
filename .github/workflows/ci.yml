@@ -131,12 +131,10 @@ jobs:
           if [ "${{ matrix.build_type }}" = "encrypted" ]; then
             sed -i '/device/a        OUTPUT_FILE+="-encrypted"' scripts/build_flashable_zip.sh
             sed -i 's|"-target_files.zip"|"-target_files-encrypted.zip"|g' scripts/make_rom.sh
-            sed -i 's|manifest.json|manifest-encrypted.json|g' unica/mods/choidujour/customize.sh
           else
             rm -f target/m51/patches/dfe/disable
             sed -i '/device/a        OUTPUT_FILE+="-decrypted"' scripts/build_flashable_zip.sh
             sed -i 's|"-target_files.zip"|"-target_files-decrypted.zip"|g' scripts/make_rom.sh
-            sed -i 's|manifest.json|manifest-decrypted.json|g' unica/mods/choidujour/customize.sh
           fi
 
       - name: Build ROM
@@ -145,7 +143,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           if [ "${{ inputs.incremental_ota }}" = "true" ]; then
-            ./scripts/make_rom.sh
+            ./scripts/make_rom.sh --build-rom-zip
             ./scripts/build_incremental.sh
           else
             ./scripts/make_rom.sh --build-rom-zip
