@@ -51,3 +51,23 @@ priv-app/com.qualcomm.location
 VENDOR_DEBLOAT+="
 etc/cgroups.json
 "
+# Lean additions (LostPrime lean build) — extra Samsung bloat for OC headroom
+SYSTEM_DEBLOAT+="
+system/priv-app/BixbyWakeup
+system/app/BixbyVoiceDropbox
+system/priv-app/BixbyVisionFramework
+system/priv-app/BixbyVoice
+system/app/GlobalGoals
+system/priv-app/SamsungMembers
+system/priv-app/SCloud
+system/app/GalaxyFriends
+system/app/SamsungTTS
+system/app/DiagMonAgent
+system/app/SamsungDMSAgent
+system/priv-app/Fmm
+system/app/SPDClient
+system/app/WssyncmlDm
+system/priv-app/SysScope
+system/app/KnoxAttestation
+system/app/ContainerAgent
+"
